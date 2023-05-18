@@ -1,0 +1,75 @@
+<section
+  class="banner flex flex-column justify-content-center align-items-center mt-2"
+  [ngStyle]="{
+    backgroundColor: 'var(--pink-200)',
+    color: 'white',
+    borderRadius: 'var(--border-radius)'
+  }"
+>
+  <h1>Discover your perfect skincare routine</h1>
+  <p>Shop our wide selection of high-quality skincare products.</p>
+</section>
+
+<section class="featured">
+  <h2>Featured Products</h2>
+  <div class="flex flex-row flex-wrap card-container blue-container">
+    <div *ngFor="let product of featuredProductsList" class="m-2">
+      <p-card header="{{product.brand + ' ' + product.title }}" [style]="{ width: '290px' }">
+        <ng-template pTemplate="header">
+          <img alt="Card" src="../../../assets/face-serum.avif" />
+        </ng-template>
+        <p>
+          {{ product.description }}
+        </p>
+        <ng-template pTemplate="footer">
+          <div class="flex">
+            <p-button
+            label="Details"
+            icon="pi pi-eye"
+            styleClass="p-button-help"
+            (onClick)="openProductDetails(product)"
+          ></p-button>
+          <p-button
+            label="Add to cart"
+            icon="pi pi-plus"
+            [style]="{ 'margin-left': '.5em' }"
+            (onClick)="addProductToCart(product)"
+          ></p-button>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+  <p-toast></p-toast>
+</section>
+
+<section class="promotions">
+  <h2>Special Promotions</h2>
+  <div class="promotion-list flex flex-wrap">
+    <div *ngFor="let promotion of activePromotions" class="promotion-item mt-2">
+      <img src="../../../assets/promotions.png" alt="Promotion Image" />
+      <h3>{{ promotion.name }}</h3>
+      <p>{{ promotion.description }}</p>
+      <p-button class="btn" [routerLink]="'/products'">Shop Now</p-button>
+    </div>
+  </div>
+</section>
+
+<footer
+  [ngStyle]="{
+    backgroundColor: 'var(--pink-200)',
+    color: 'white',
+    borderRadius: 'var(--border-radius)'
+  }"
+>
+  <div class="flex flex-column justify-content-center align-items-center mt-2">
+    <span [routerLink]="'/home'" class="m-1">Home</span>
+    <span [routerLink]="'/products'" class="m-1">Shop</span>
+    <span class="m-1">About Us</span>
+    <span class="m-1">Contact Us</span>
+  </div>
+  <div class="social-links">
+    <a href="#" class="fa fa-facebook"></a>
+    <a href="#" class="fa fa"></a>
+  </div>
+</footer>
